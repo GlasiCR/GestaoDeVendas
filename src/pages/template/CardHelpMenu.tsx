@@ -1,5 +1,5 @@
-import * as S from "./styled"
-import Btn from "../button"
+import * as S from "./styles"
+import Btn from "../../components/button"
 import Hands from '../../images/templateImages/hands.png'
 
 export default function CardHelpMenu(){

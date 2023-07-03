@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { color } from "../../theme/constants";
 
-export const Header = styled.header`
+export const ContainerTemplate = styled.main`
     display: flex;
-    justify-content: space-between;
-    background: transparent;  
+    background: transparent;
+    width: 100vw;
 `
 export const NavSide = styled.nav`
     background: ${color.primary};
@@ -14,13 +14,13 @@ export const NavSide = styled.nav`
     font-weight: 400;
     line-height: 150%;
     width: 274px;
-    height: 1208px;
     letter-spacing: 0.2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 50px;
     padding-top: 45px;
+    margin-bottom: 100px;
 `
 export const ContainerCard = styled.div`
     width: 223px;
@@ -30,6 +30,7 @@ export const ContainerCard = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 450px;
+    margin-bottom: 250px;
 `
 export const Card = styled.div`
     width: 100%;
@@ -54,10 +55,10 @@ export const ImgHands = styled.img`
 export const ParagraphTalkUs = styled.p`
     padding: 10px 15px;  
 `
-
 export const ContainerUserLogin = styled.div`
    display: flex;
-   padding: 38px;
+   justify-content: flex-end;
+   align-items: flex-end; 
    gap: 5px;
 `
 export const ImgUserAvatar = styled.img`
@@ -86,9 +87,14 @@ export const BtnSidebar = styled.button`
     border-radius: 8px;
     margin: 0 13px;
 
-    &:active {
+    &:hover {
         background-color: rgba(118, 130, 193, 0.30000001192092896);
         font-size: 16px;
         font-weight: 600;
+        cursor: pointer;
     } 
+`
+export const ContainerRightTemplate = styled.div`
+    flex: 1;
+    margin: 20px 50px 20px 20px;
 `

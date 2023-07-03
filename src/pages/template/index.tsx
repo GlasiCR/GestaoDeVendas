@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import CardHelpMenu from './CardHelpMenu'
-import * as S from './styled'
+import * as S from './styles'
 import Logo from '../../images/templateImages/Logo.png'
 import User from '../../images/templateImages/User.png'
 import IDash from '../../images/templateImages/idash.png'
@@ -11,34 +11,34 @@ import BtnMenu from './BtnMenu'
 
 export default function HeaderTemplate() {
     const itemsMenu = [
-        {name: "Dashboard", image: IDash},
-        {name: "Predições", image: IPredic},
-        {name: "Produtos", image: IProd},
+        { name: "Dashboard", image: IDash },
+        { name: "Predições", image: IPredic },
+        { name: "Produtos", image: IProd },
     ]
-    
+
     return (
-        <>
-            <S.Header>
-                <S.NavSide>
+        <S.ContainerTemplate>
+            <S.NavSide>
                 <img src={Logo} />
-                    <S.ContainerBtnMenu>
-                        {itemsMenu.map((item, index) => (
-                            <BtnMenu
+                <S.ContainerBtnMenu>
+                    {itemsMenu.map((item, index) => (
+                        <BtnMenu
                             key={index}
                             titleItemMenu={item.name}
-                            imageItemMenu= {item.image}
+                            imageItemMenu={item.image}
                         />
-                        ))}
-                    </S.ContainerBtnMenu>
-                    <CardHelpMenu />
-                </S.NavSide>
+                    ))}
+                </S.ContainerBtnMenu>
+                <CardHelpMenu />
+            </S.NavSide>
 
+            <S.ContainerRightTemplate>
                 <S.ContainerUserLogin>
                     <S.ImgUserAvatar src={User} />
                     <MenuLoginUser />
                 </S.ContainerUserLogin>
-            </S.Header>
-            <Outlet />
-        </>
+                <Outlet />
+            </S.ContainerRightTemplate>
+        </S.ContainerTemplate>
     )
 }
