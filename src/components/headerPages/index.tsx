@@ -4,11 +4,15 @@ type Props ={
     children?: React.ReactNode,
     colorTitle?: string,
     bgColor?: string,
+    filterPeriod?: React.ReactNode,
 }
-export default function HeaderPages({title, children, colorTitle, bgColor}:Props){
+export default function HeaderPages({title, children, colorTitle, bgColor, filterPeriod}:Props){
     return(
         <S.ContainerHeaderPage backgroundColor={bgColor}>
-            <S.H2 color={colorTitle}>{title}</S.H2>
+            <S.DivTitle>
+                <S.H2 color={colorTitle}>{title}</S.H2>
+                {filterPeriod}
+            </S.DivTitle>
             <S.ContainerChildren>
                 {children}
             </S.ContainerChildren>

@@ -27,21 +27,18 @@ export default createGlobalStyle`
     line-height: 140%;
     letter-spacing: 0.2px;
   }
-
+ 
   h4{
-    font-size: 16px;
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 150%;
+    font-size: 20px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    line-height: 140%;
     letter-spacing: 0.2px;
   }
 
   h5{
-    color: #C5CFFF;
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
-    font-weight: 400;
     line-height: 150%;
     letter-spacing: 0.2px;
   }

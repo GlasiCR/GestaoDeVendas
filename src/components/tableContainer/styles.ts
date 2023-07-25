@@ -21,6 +21,9 @@ export const BgImage = styled.img<PropsStyle>`
     background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : '#C5CFFF')};
     border-radius: 8px;
     padding: 12px;
+    &:hover{
+        cursor: pointer;
+    }
 `
 export const DivTitle = styled.div`
     display: flex;

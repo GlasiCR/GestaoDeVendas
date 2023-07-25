@@ -8,25 +8,39 @@ import IPredic from '../../images/templateImages/ipredic.png'
 import IProd from '../../images/templateImages/iprod.png'
 import MenuLoginUser from './MenuLoginUser'
 import BtnMenu from './BtnMenu'
+import { UnderlinedLink } from "./styles";
+import { useLoginApi } from '../../hookCustom/useLoginApi'
+import { useEffect, useState } from 'react'
+import { UserLoggedType } from '../../types/UserType'
+
 
 export default function HeaderTemplate() {
     const itemsMenu = [
-        { name: "Dashboard", image: IDash },
-        { name: "Predições", image: IPredic },
-        { name: "Produtos", image: IProd },
+        { name: "Dashboard", image: IDash, route:"" },
+        { name: "Predições", image: IPredic, route:"predicoes" },
+        { name: "Produtos", image: IProd, route:"produtos"},
     ]
-
+    const [infoUserLogged, setInfoUserLogged] = useState<UserLoggedType>()
+    const userLogged = useLoginApi()
+    useEffect(() => {
+        const loadData = async () => {
+            const infoUser = await userLogged.loggedInUser()
+            setInfoUserLogged(infoUser)
+        };
+        loadData()
+    },[])
     return (
         <S.ContainerTemplate>
             <S.NavSide>
                 <img src={Logo} />
                 <S.ContainerBtnMenu>
                     {itemsMenu.map((item, index) => (
-                        <BtnMenu
-                            key={index}
-                            titleItemMenu={item.name}
-                            imageItemMenu={item.image}
-                        />
+                        <UnderlinedLink to={item.route} key={index}>    
+                            <BtnMenu
+                                titleItemMenu={item.name}
+                                imageItemMenu={item.image}
+                            />
+                        </UnderlinedLink> 
                     ))}
                 </S.ContainerBtnMenu>
                 <CardHelpMenu />
@@ -35,7 +49,10 @@ export default function HeaderTemplate() {
             <S.ContainerRightTemplate>
                 <S.ContainerUserLogin>
                     <S.ImgUserAvatar src={User} />
-                    <MenuLoginUser />
+                    <MenuLoginUser 
+                        email={infoUserLogged?.email}
+                        nome={infoUserLogged?.nome}
+                    />
                 </S.ContainerUserLogin>
                 <Outlet />
             </S.ContainerRightTemplate>

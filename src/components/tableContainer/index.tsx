@@ -9,20 +9,21 @@ type Props = {
     descriptionImage?: string,
     backgroundColor?: string,
     colorTitle?: string,
+    buttons?: React.ReactNode,
+    inputFilter?: React.ReactNode,
+    onClickImg?: MouseEventHandler,
 }
 
-export default function TableContainer({iconTable, titleTable, onClick, children, descriptionImage, backgroundColor, colorTitle}: Props){
+export default function TableContainer({onClickImg, iconTable, titleTable, buttons, inputFilter, children, descriptionImage, backgroundColor, colorTitle}: Props){
     return (
         <S.ContainerTable>
             <S.HeaderContainerTable>
                 <S.DivTitle>
-                    <S.BgImage src={iconTable} alt={descriptionImage} backgroundColor={backgroundColor} />
+                    {inputFilter}
+                    <S.BgImage onClick={onClickImg} src={iconTable} alt={descriptionImage} backgroundColor={backgroundColor} />
                     <S.TitleTable color={colorTitle}>{titleTable}</S.TitleTable>  
                 </S.DivTitle>
-                <div>
-                    <button onClick={onClick}>Toglet()</button>    
-                    <button onClick={onClick}>Toglet()</button>  
-                </div>                 
+                {buttons}
             </S.HeaderContainerTable>
             <div>
                 {children}

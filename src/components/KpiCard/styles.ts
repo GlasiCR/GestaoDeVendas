@@ -16,6 +16,7 @@ export const Percentage = styled.div`
 `
 export const TitleKpi = styled.h5<PropsStyle>`
     color: ${(props) => (props.color ? props.color : '#C5CFFF')};
+    font-weight: 400;
 `
 export const ContainerKpi = styled.div<PropsStyle>`
     background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : color.secondary)};
@@ -28,6 +29,7 @@ export const ContainerKpi = styled.div<PropsStyle>`
     gap: 25px;
     justify-content: flex-start;
     align-items: center;
+    box-shadow: 0px 0px 25px 0px rgba(163, 163, 163, 0.20);
 `
 export const DatasKpi = styled.div`
     display: flex;
@@ -37,4 +39,7 @@ export const ContainerNumbers = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+`
+export const NumberKPI = styled.h2<PropsStyle>`
+    color: ${(props) => (props.color ? props.color : '#FFF')};
 `

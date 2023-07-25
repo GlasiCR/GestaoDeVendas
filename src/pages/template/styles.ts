@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { color } from "../../theme/constants";
+import { Link } from 'react-router-dom';
 
 export const ContainerTemplate = styled.main`
     display: flex;
     background: transparent;
     width: 100vw;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 `
 export const NavSide = styled.nav`
     background: ${color.primary};
@@ -97,4 +100,25 @@ export const BtnSidebar = styled.button`
 export const ContainerRightTemplate = styled.div`
     flex: 1;
     margin: 20px 50px 20px 20px;
+`
+export const NameUser = styled.h3`
+    color: #212121;
+    text-align: left;
+`
+export const EmailUser = styled.h5`
+    color: #757575;
+    font-weight: 400;
+    text-align: left;
+`
+export const ContainerMenu = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+`
+export const IconMenu = styled.img`
+    margin-right: 20px;
+`
+export const UnderlinedLink = styled(Link)`
+    text-decoration: none;
 `

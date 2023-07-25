@@ -1,23 +1,29 @@
 import * as S from './styles'
 type Props = {
-    titleKpi: string,
-    directionKpi: string,
-    numberKpi: number,
-    percentageKpi: number,    
+    directionKpi?: string,
+    numberKpi?: number,
+    percentageKpi?: number,
+    width?: string,   
+    bgColor?: string,
+    colorTitle?: string,
+    colorNumberKpi?: string,
+    children?:React.ReactNode,
+    firstPieceOfTitle?: string,
+    titleKpiBold?: string,
+    secondPieceOfTitle?: string,
+    graphic?: React.ReactNode,
 }
 
-export default function KpiCard({titleKpi, directionKpi, numberKpi, percentageKpi}: Props){
+export default function KpiCard({graphic, firstPieceOfTitle, titleKpiBold, numberKpi, children, width, bgColor, colorTitle, colorNumberKpi, secondPieceOfTitle}: Props){
     return(
-        <S.ContainerKpi>
-            <div style={{width: "60px", height: "60px", background: "white"}}></div>
+        <S.ContainerKpi width={width} backgroundColor={bgColor}>
+            {graphic}
             <S.DatasKpi>
-                <S.TitleKpi>Total <b>{titleKpi}</b> em {directionKpi}</S.TitleKpi>
+                <S.TitleKpi color={colorTitle}>{firstPieceOfTitle} <b>{titleKpiBold}</b> {secondPieceOfTitle}</S.TitleKpi>
                 <>
                     <S.ContainerNumbers>
-                        <h2>{numberKpi}</h2>
-                        <div>
-                            <S.Percentage style={{ backgroundColor: percentageKpi < 0 ? '#F33' : '#00C247' }}> {percentageKpi}%</S.Percentage>
-                        </div>
+                        <S.NumberKPI color={colorNumberKpi}>{numberKpi}</S.NumberKPI>
+                        {children}
                     </S.ContainerNumbers>
                 </>
             </S.DatasKpi>

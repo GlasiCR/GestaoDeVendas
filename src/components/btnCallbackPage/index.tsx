@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react'
 import * as S from './styles'
-import Iarrowleft from "../../images/iconsDashs/iarrowleft.png"
+import Iarrowleft from "../../images/iconsPagesLoged/iarrowleft.png"
 
 type Props = {
     titleReturn: string,

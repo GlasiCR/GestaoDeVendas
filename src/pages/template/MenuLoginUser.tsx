@@ -4,9 +4,30 @@ import Button from '@mui/material/Button';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
+import Setting from "../../images/templateImages/setting.png"
+import Logout from "../../images/templateImages/logout.png"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { ThemeProvider, createTheme} from '@mui/material'
+import { UserContext } from '../../contexts/UserContext';
+import { useContext } from "react"
+import { useNavigate } from 'react-router-dom';
+import * as S from './styles'
+import { UserLoggedType } from '../../types/UserType'
+const finalTheme = createTheme({
+  components:{
+    MuiButton:{
+      styleOverrides:{
+        root: {
+          color: '#212121',
+          backgroundColor: 'transparent',
+          '&:hover': {
+            backgroundColor: 'inherit',
+          },
+        }  
+      }
+    }
+  }
+})
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -43,39 +64,47 @@ const StyledMenu = styled((props: MenuProps) => (
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity,
-        ),
+        ), 
       },
     },
   },
 }));
 
-export default function MenuLoginUser() {
+export default function MenuLoginUser({nome, email}: UserLoggedType ) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const authUser = useContext(UserContext)
+  const navigate = useNavigate()
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  
+  const handleLogout = () => {
+    authUser.logout()
+    navigate('/')
+  }
   return (
     <div>
-      <Button
-        id="demo-customized-button"
-        aria-controls={open ? 'demo-customized-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="contained"
-        disableElevation
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-      >
-        <div>
-          <p>Glasielle Cirilo</p>
-          <small>gla.cirilo@gmail.com</small>
-        </div>
-      </Button>
+      <ThemeProvider theme={finalTheme}>
+        <Button
+          id="demo-customized-button"
+          aria-controls={open ? 'demo-customized-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          variant="contained"
+          disableElevation
+          onClick={handleClick}
+          endIcon={<KeyboardArrowDownIcon />}
+        >
+          <div>
+            <S.NameUser>{nome}</S.NameUser>
+            <S.EmailUser>{email}</S.EmailUser>
+          </div>
+        </Button>
+      </ThemeProvider>
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{
@@ -85,15 +114,17 @@ export default function MenuLoginUser() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <FileCopyIcon />
-          Configurações
-        </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <ArchiveIcon />
-          Sair
-        </MenuItem>
+        <S.ContainerMenu>
+          <MenuItem onClick={handleClose} disableRipple>
+            <S.IconMenu src={Setting} alt="Configurações" />
+            Configurações
+          </MenuItem>
+          <Divider sx={{ my: 0.5 }} />
+          <MenuItem onClick={handleLogout} disableRipple>
+            <S.IconMenu src={Logout} alt="Sair" />
+            Sair
+          </MenuItem>
+        </S.ContainerMenu>
       </StyledMenu>
     </div>
   );
